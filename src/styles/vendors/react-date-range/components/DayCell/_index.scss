@@ -1,0 +1,48 @@
+.rdrDay {
+	position: relative;
+	width: calc(100% / 7);
+	box-sizing: inherit;
+	cursor: pointer;
+	font: inherit;
+}
+
+.rdrDayNumber {
+	position: relative;
+	display: block;
+
+	span {
+		color: #1d2429; // stylelint-disable-line scale-unlimited/declaration-strict-value
+		@include dark-mode {
+			color: $dark-body-color;
+		}
+	}
+}
+
+.rdrDayDisabled {
+	cursor: not-allowed;
+}
+
+@supports (-ms-ime-align: auto) {
+	.rdrDay {
+		flex-basis: 14.285% !important; // stylelint-disable-line declaration-no-important
+	}
+}
+
+.rdrSelected,
+.rdrInRange,
+.rdrStartEdge,
+.rdrEndEdge {
+	pointer-events: none;
+}
+
+// .rdrInRange {}
+
+.rdrDayStartPreview,
+.rdrDayInPreview,
+.rdrDayEndPreview {
+	pointer-events: none;
+}
+
+// .rdrDayHovered {}
+
+// .rdrDayActive {}

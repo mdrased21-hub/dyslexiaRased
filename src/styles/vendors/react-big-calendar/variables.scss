@@ -1,0 +1,38 @@
+@use 'sass:math';
+@use 'sass:color';
+
+$out-of-range-color: color.adjust(#333, $lightness: 40%) !default;
+$dark-out-of-range-color: color.adjust($dark, $lightness: 40%) !default;
+$out-of-range-bg-color: color.adjust(#333, $lightness: 70%) !default;
+$dark-out-of-range-bg-color: color.adjust($dark, $lightness: 10%) !default;
+
+$calendar-border: $border-color !default;
+$dark-calendar-border: $dark-border-color !default;
+$cell-border: color.adjust($border-color, $lightness: 3%) !default;
+$dark-cell-border: color.adjust($dark-calendar-border, $lightness: -5%) !default;
+
+$segment-width: math.percentage(math.div(1, 7)) !default;
+
+$time-selection-color: $white !default;
+$time-selection-bg-color: rgba(0, 0, 0, 0.5) !default;
+$date-selection-bg-color: rgba(0, 0, 0, 0.1) !default;
+
+$event-base-color: $info !default;
+$event-bg: tint-color($event-base-color, 75) !default;
+$event-border: color.adjust($event-bg, $lightness: -10%) !default;
+$event-outline: rgba($event-bg, 0.5) !default;
+$event-color: $event-base-color !default;
+$event-border-radius: $border-radius !default;
+$event-padding: $btn-padding-y $btn-padding-x !default;
+$event-zindex: 4 !default;
+
+$btn-color: #373a3c !default;
+$btn-bg: #fff !default;
+$btn-border: #ccc !default;
+
+$current-time-color: $success !default;
+
+$rbc-css-prefix: rbc-i !default;
+
+$today-highlight-bg: tint-color($event-base-color, 95) !default;
+$dark-today-highlight-bg: rgba(shade-color($event-base-color, 95), 0.3) !default;

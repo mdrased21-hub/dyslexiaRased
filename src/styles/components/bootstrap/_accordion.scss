@@ -1,0 +1,114 @@
+//
+// Accordion
+//
+
+.accordion {
+	--accordion-border-radius: #{$accordion-border-radius};
+	--accordion-border-width: #{$accordion-border-width};
+	--#{$variable-prefix}accordion-bg: #{$accordion-bg};
+	$self: &;
+
+	@include border-radius(
+		if(
+			$accordion-border-width == 0,
+			var(--accordion-border-radius),
+			calc(var(--accordion-border-radius) + var(--accordion-border-width))
+		)
+	);
+
+	@include dark-mode {
+		--#{$variable-prefix}accordion-bg: #{$dark-accordion-bg};
+	}
+
+	&-item {
+		background-color: var(--#{$variable-prefix}accordion-bg);
+	}
+
+	&-button {
+		min-height: $accordion-padding-y * 2 + $accordion-button-icon-size;
+		font-size: $accordion-button-font-size;
+		font-weight: $accordion-button-font-weight;
+		@include dark-mode {
+			background-color: $dark-accordion-button-bg;
+			color: $dark-accordion-button-color;
+		}
+
+		&.collapsed {
+			border-bottom-width: $accordion-border-width;
+		}
+	}
+
+	&-icon {
+		@include margin-right($accordion-button-icon-space);
+
+		color: $accordion-button-icon-color;
+		font-size: $accordion-button-icon-size;
+	}
+
+	&-body {
+		#{ $self }-item:not(:last-of-type) &::after {
+			@include box-shadow($box-shadow);
+
+			position: relative;
+			top: 0.75rem;
+			display: block;
+			width: 20%;
+			height: 0.5rem;
+			margin-right: auto;
+			margin-left: auto;
+			background: #ededed;
+			border-radius: 0.5rem;
+			content: '';
+		}
+	}
+
+	// Status
+
+	// Flush Style
+	&.accordion-flush {
+		.c-accordion__collapse {
+			border-width: 0;
+		}
+
+		.accordion-item {
+			background-color: transparent;
+		}
+	}
+
+	//  Colors
+	@each $color, $value in $theme-colors {
+		&-button-#{$color} {
+			$text-color: shade-color($value, 10%);
+
+			&:not(.collapsed) {
+				background-color: tint-color($value, 90%);
+				color: $text-color;
+				@include dark-mode {
+					background-color: if(
+						$color == dark,
+						shade-color($value, 100),
+						rgba($value, 0.2)
+					);
+					color: if($color == dark, $light, $text-color);
+				}
+
+				&::after {
+					background-image: escape-svg(
+						url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$text-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>")
+					);
+				}
+			}
+
+			#{$self}-icon {
+				color: $text-color;
+				@include dark-mode {
+					color: if($color == dark, $light, $text-color);
+				}
+			}
+
+			&:focus {
+				border-color: tint-color($value, 50%);
+			}
+		}
+	}
+}

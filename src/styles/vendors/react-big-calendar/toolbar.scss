@@ -1,0 +1,118 @@
+@use 'sass:color';
+
+// stylelint-disable scss/selector-no-redundant-nesting-selector
+// stylelint-disable selector-no-qualifying-type
+// stylelint-disable selector-max-specificity
+// stylelint-disable no-descending-specificity
+// stylelint-disable selector-max-compound-selectors
+@import './variables';
+
+$active-background: color.adjust($btn-bg, $lightness: -10%);
+$active-border: color.adjust($btn-border, $lightness: -12%);
+
+.rbc-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: $spacer;
+	font-size: $font-size-base;
+
+	.rbc-toolbar-label {
+		flex-grow: 1;
+		padding: 0 $spacer;
+		text-align: center;
+	}
+
+	& button {
+		display: inline-block;
+		padding: 0.375rem 1rem;
+		border: 1px solid $btn-border;
+		margin: 0;
+		background: none;
+		background-image: none;
+		border-radius: $btn-border-radius;
+		color: $btn-color;
+		line-height: normal;
+		text-align: center;
+		vertical-align: middle;
+		white-space: nowrap;
+
+		&:active,
+		&.rbc-active {
+			background-color: $active-background;
+			background-image: none;
+			border-color: $active-border;
+			box-shadow: $btn-box-shadow;
+
+			&:hover,
+			&:focus {
+				background-color: color.adjust($btn-bg, $lightness: -17%);
+				border-color: color.adjust($btn-border, $lightness: -25%);
+				color: $btn-color;
+			}
+		}
+
+		&:focus {
+			background-color: $active-background;
+			border-color: $active-border;
+			color: $btn-color;
+		}
+
+		&:hover {
+			background-color: $active-background;
+			border-color: $active-border;
+			color: $btn-color;
+		}
+	}
+}
+
+.rbc-btn-group {
+	display: inline-block;
+	white-space: nowrap;
+
+	> button:first-child:not(:last-child) {
+		border-bottom-right-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	> button:last-child:not(:first-child) {
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+	}
+
+	.rbc-rtl & > button:first-child:not(:last-child) {
+		border-radius: $btn-border-radius;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+	}
+
+	.rbc-rtl & > button:last-child:not(:first-child) {
+		border-radius: $btn-border-radius;
+		border-bottom-right-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	> button:not(:first-child):not(:last-child) {
+		border-radius: 0;
+	}
+
+	button + button {
+		margin-left: $btn-border-width * -1;
+	}
+
+	.rbc-rtl & button + button {
+		margin-right: $btn-border-width * -1;
+		margin-left: 0;
+	}
+
+	& + &,
+	& + button {
+		margin-left: $spacer;
+	}
+}
+// stylelint-enable scss/selector-no-redundant-nesting-selector
+// stylelint-enable selector-no-qualifying-type
+// stylelint-enable selector-max-specificity
+// stylelint-enable no-descending-specificity
+// stylelint-enable selector-max-compound-selectors

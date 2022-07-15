@@ -1,0 +1,186 @@
+// stylelint-disable scale-unlimited/declaration-strict-value
+// stylelint-disable selector-max-compound-selectors
+// stylelint-disable selector-max-universal
+@import './variables';
+@import './time-column';
+
+.rbc-slot-selection {
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	padding: $spacer * 0.25;
+	background-color: $time-selection-bg-color;
+	color: $time-selection-color;
+	font-size: 75%;
+}
+
+.rbc-slot-selecting {
+	cursor: move;
+}
+
+.rbc-time-view {
+	display: flex;
+	overflow: hidden;
+	width: 100%;
+	min-height: 0;
+	flex: 1;
+	flex-direction: column;
+	border: 1px solid $calendar-border;
+	border-radius: $border-radius;
+	@include dark-mode {
+		border-color: $dark-calendar-border;
+	}
+
+	.rbc-time-gutter {
+		white-space: nowrap;
+	}
+
+	.rbc-allday-cell {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		box-sizing: content-box;
+	}
+
+	.rbc-allday-cell + .rbc-allday-cell {
+		border-left: 1px solid $cell-border;
+		@include dark-mode {
+			border-left-color: $dark-cell-border;
+		}
+	}
+
+	.rbc-allday-events {
+		position: relative;
+		z-index: 4;
+	}
+
+	.rbc-row {
+		min-height: 1.5rem;
+		box-sizing: border-box;
+	}
+}
+
+.rbc-time-header {
+	display: flex;
+	flex: 0 0 auto; // should not shrink below height
+	flex-direction: row;
+
+	&.rbc-overflowing {
+		border-right: 1px solid $cell-border;
+		@include dark-mode {
+			border-right-color: $dark-cell-border;
+		}
+	}
+
+	.rbc-rtl &.rbc-overflowing {
+		border-left: 1px solid $cell-border;
+		border-right-width: 0;
+		@include dark-mode {
+			border-left-color: $dark-cell-border;
+		}
+	}
+
+	> .rbc-row:first-child {
+		border-bottom: 1px solid $cell-border;
+		@include dark-mode {
+			border-bottom-color: $dark-cell-border;
+		}
+	}
+
+	> .rbc-row.rbc-row-resource {
+		border-bottom: 1px solid $cell-border;
+		@include dark-mode {
+			border-bottom-color: $dark-cell-border;
+		}
+	}
+
+	// .rbc-gutter-cell {
+	//   flex: none;
+	// }
+
+	// > .rbc-gutter-cell + * {
+	//   width: 100%;
+	// }
+}
+
+.rbc-time-header-cell-single-day {
+	display: none;
+}
+
+.rbc-time-header-content {
+	display: flex;
+	min-width: 0;
+	flex: 1;
+	flex-direction: column;
+	border-left: 1px solid $cell-border;
+	@include dark-mode {
+		border-left-color: $dark-cell-border;
+	}
+
+	.rbc-rtl & {
+		border-right: 1px solid $cell-border;
+		border-left-width: 0;
+		@include dark-mode {
+			border-right-color: $dark-cell-border;
+		}
+	}
+
+	> .rbc-row.rbc-row-resource {
+		flex-shrink: 0;
+		border-bottom: 1px solid $cell-border;
+		@include dark-mode {
+			border-bottom-color: $dark-cell-border;
+		}
+	}
+}
+
+.rbc-time-content {
+	position: relative;
+	display: flex;
+	width: 100%;
+	flex: 1 0 0%;
+	align-items: flex-start;
+	border-top: 2px solid $calendar-border; // stylelint-disable-line
+	overflow-y: auto;
+	@include dark-mode {
+		border-top-color: $dark-calendar-border;
+	}
+
+	> .rbc-time-gutter {
+		flex: none;
+	}
+
+	> * + * > * {
+		border-left: 1px solid $cell-border;
+		@include dark-mode {
+			border-left-color: $dark-cell-border;
+		}
+	}
+
+	.rbc-rtl & > * + * > * {
+		border-right: 1px solid $cell-border;
+		border-left-width: 0;
+		@include dark-mode {
+			border-right-color: $dark-cell-border;
+		}
+	}
+
+	> .rbc-day-slot {
+		width: 100%;
+		user-select: none;
+	}
+}
+
+.rbc-current-time-indicator {
+	position: absolute;
+	z-index: 3;
+	right: 0;
+	left: 0;
+	height: 1px;
+	background-color: $current-time-color;
+	pointer-events: none;
+}
+
+// stylelint-enable scale-unlimited/declaration-strict-value
+// stylelint-enable selector-max-compound-selectors
+// stylelint-enable selector-max-universal

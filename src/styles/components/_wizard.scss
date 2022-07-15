@@ -1,0 +1,23 @@
+//
+//	Wizard
+//
+
+$wizard-button-size: 2rem;
+
+.wizard {
+	padding-top: $spacer;
+}
+
+.wizard-progress {
+	margin: ($wizard-button-size * 0.5) ($wizard-button-size * 0.5)
+		(($wizard-button-size * 0.5) + $spacer);
+
+	> .progress {
+		height: 1px;
+	}
+
+	.wizard-progress-btn {
+		width: $wizard-button-size;
+		height: $wizard-button-size;
+	}
+}

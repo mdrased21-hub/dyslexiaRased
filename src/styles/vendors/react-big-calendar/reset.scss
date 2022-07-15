@@ -1,0 +1,23 @@
+// stylelint-disable selector-no-qualifying-type
+.rbc-btn {
+	margin: 0;
+	color: inherit;
+	font: inherit;
+}
+
+button.rbc-btn {
+	overflow: visible;
+	appearance: button;
+	cursor: pointer;
+	text-transform: none;
+}
+
+button[disabled].rbc-btn {
+	cursor: not-allowed;
+}
+
+button.rbc-input::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+// stylelint-enable selector-no-qualifying-type

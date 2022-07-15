@@ -1,0 +1,16 @@
+//
+//	SVG Icon
+//
+.svg-icon {
+	// Sizes
+	@each $name, $value in $icon-sizes {
+		&-#{$name} {
+			@include font-size($value);
+		}
+	}
+}
+
+// Materiel Color
+.svg-icon--material {
+	fill: currentColor;
+}

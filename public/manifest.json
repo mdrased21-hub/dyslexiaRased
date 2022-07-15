@@ -1,0 +1,25 @@
+{
+	"short_name": "Facit",
+	"name": "Facit Theme",
+	"icons": [
+		{
+			"src": "sktd3.png",
+			"sizes": "256x256",
+			"type": "image/x-icon"
+		},
+		{
+			"src": "sktd3.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "sktd3.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"theme_color": "#1f2128",
+	"background_color": "#ffffff"
+}

@@ -1,0 +1,18 @@
+import * as React from 'react';
+
+function SvgLockFill(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			fill='currentColor'
+			className='svg-icon'
+			viewBox='0 0 16 16'
+			{...props}>
+			<path d='M8 1a2 2 0 012 2v4H6V3a2 2 0 012-2zm3 6V3a3 3 0 00-6 0v4a2 2 0 00-2 2v5a2 2 0 002 2h6a2 2 0 002-2V9a2 2 0 00-2-2z' />
+		</svg>
+	);
+}
+
+export default SvgLockFill;

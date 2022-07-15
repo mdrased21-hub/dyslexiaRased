@@ -1,0 +1,8 @@
+$notification-types: (
+	'default': $dark,
+	'success': $success,
+	'info': $info,
+	'warning': $warning,
+	'danger': $danger,
+	'awesome': $primary,
+) !default;

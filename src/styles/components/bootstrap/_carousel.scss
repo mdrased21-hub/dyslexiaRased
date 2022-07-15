@@ -1,0 +1,30 @@
+//
+//	Carousel
+//
+
+.carousel-inner {
+	border-radius: $carousel-border-radius;
+}
+
+.carousel-slide,
+.carousel-slide-bg {
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.carousel-indicators {
+	padding-top: $carousel-indicator-hit-area-height;
+	padding-bottom: $carousel-indicator-hit-area-height;
+
+	[data-bs-target] {
+		width: $carousel-indicator-height;
+		border: 0;
+		border-radius: $carousel-indicator-border-radius;
+	}
+
+	.active {
+		width: $carousel-indicator-width;
+	}
+}

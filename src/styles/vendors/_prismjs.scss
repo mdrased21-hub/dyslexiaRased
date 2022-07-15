@@ -1,0 +1,155 @@
+//
+// Prismjs
+//
+
+@use 'sass:color';
+
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+// stylelint-disable selector-no-qualifying-type
+// stylelint-disable no-descending-specificity
+
+.prismjs-code code[class*='language-'],
+pre[class*='language-'].prismjs-code {
+	background: none;
+	color: $black;
+	font-family: $font-family-code;
+	font-size: $font-size-base;
+	hyphens: none;
+	line-height: 1.5;
+	tab-size: 4;
+	text-align: left;
+	white-space: pre;
+	word-break: normal;
+	word-spacing: normal;
+	word-wrap: normal;
+	@include dark-mode {
+		color: $light;
+	}
+}
+
+pre[class*='language-'].prismjs-code::selection,
+pre[class*='language-'].prismjs-code ::selection,
+.prismjs-code code[class*='language-']::selection,
+.prismjs-code code[class*='language-'] ::selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+@media print {
+	.prismjs-code code[class*='language-'],
+	pre[class*='language-'].prismjs-code {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*='language-'].prismjs-code {
+	@include padding($spacer);
+	@include margin(($spacer * 0.5) 0);
+
+	overflow: auto;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'].prismjs-code {
+	background: color.adjust($light, $lightness: 2%);
+	@include dark-mode {
+		background: color.adjust($dark, $lightness: 8%);
+	}
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+	padding: 0.1em;
+	border-radius: 0.3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: $gray-500;
+}
+
+.token.punctuation {
+	color: $gray-600;
+}
+
+.token.namespace {
+	opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: $code-color;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: $success;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	padding: 0 0.25rem;
+	margin: 0 0.125rem;
+
+	/* This background color was intended by the author of this theme. */
+	background: rgba($white, 0.9);
+	border-radius: 0.25rem;
+	color: $warning;
+	@include dark-mode {
+		background: rgba($light, 0.2);
+	}
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: $info;
+}
+
+.token.function,
+.token.class-name {
+	color: $danger;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: color.adjust($warning, $lightness: -20%);
+}
+
+.token.important,
+.token.bold {
+	font-weight: 700;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+// stylelint-enable selector-no-qualifying-type
+// stylelint-enable no-descending-specificity

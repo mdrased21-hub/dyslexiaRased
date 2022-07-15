@@ -1,0 +1,84 @@
+//
+//  Alert
+//
+
+@use 'sass:math';
+@use 'sass:color';
+
+// Bootstrap Extension
+@mixin alert-variations(
+	$variation,
+	$bg-scale: $alert-bg-scale,
+	$border-scale: $alert-border-scale,
+	$color-scale: $alert-color-scale
+) {
+	@each $state, $value in $theme-colors {
+		$background: shift-color($value, $bg-scale);
+		$border: shift-color($value, $border-scale);
+		$color: shift-color($value, $color-scale);
+
+		$dark-background: if(
+			$variation == light,
+			rgba-to-rgb(rgba($value, $dark-alert-bg-opacity-light), $dark),
+			if(
+				$variation == outline,
+				rgba-to-rgb(rgba($value, $dark-alert-bg-opacity-outline), $dark),
+				shift-color($value, $bg-scale)
+			)
+		);
+		$dark-border: if(
+			$variation == light,
+			rgba($value, $dark-alert-bg-opacity-light),
+			shift-color($value, $border-scale)
+		);
+		$dark-color: shift-color($value, $color-scale * -1);
+
+		@if contrast-ratio($background, $color) < $min-contrast-ratio {
+			$color: color.mix($value, color-contrast($background), math.abs($color-scale));
+		}
+		&#{&}-#{$variation}-#{$state} {
+			@include alert-variant($background, $border, $color);
+
+			@include dark-mode {
+				@include alert-variant($dark-background, $dark-border, $dark-color);
+			}
+		}
+	}
+}
+// Bootstrap Extension - END
+
+.alert {
+	// Light
+	@include alert-variations(
+		light,
+		$alert-bg-scale-light,
+		$alert-border-scale-light,
+		$alert-color-scale-light
+	);
+
+	//  Outline
+	@include alert-variations(
+		outline,
+		$alert-bg-scale-outline,
+		$alert-border-scale-outline,
+		$alert-color-scale-outline
+	);
+
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+
+	//  Bootstrap Alert Heading
+	&-heading {
+		flex: 1 0 100%;
+	}
+
+	&-icon {
+		margin-right: $alert-padding-x;
+		font-size: $alert-icon-size;
+	}
+}
+
+.alert[class*='shadow-3d-'] {
+	margin-bottom: 2.5rem;
+}

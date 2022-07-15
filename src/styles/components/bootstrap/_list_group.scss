@@ -1,0 +1,53 @@
+//
+//  List Group
+//
+
+@use 'sass:color';
+@use 'sass:math';
+
+// Individual list items
+//
+// Use on `li`s or `div`s within the `.list-group` parent.
+.list-group-item {
+	@include dark-mode {
+		background-color: $dark-list-group-bg;
+		color: $dark-list-group-color;
+	}
+}
+
+// Flush list items
+//
+// Remove borders and border-radius to keep list group items edge-to-edge. Most
+// useful within other components (e.g., cards).
+.list-group-flush {
+	> .list-group-item {
+		@include dark-mode {
+			background-color: transparent;
+		}
+	}
+}
+
+// List group contextual variants
+//
+// Add modifier classes to change text and background color on individual items.
+// Organizationally, this must come after the `:hover` states.
+@each $state, $value in $theme-colors {
+	$list-group-variant-bg: rgba($value, 0.2);
+	$list-group-variant-color: shift-color($value, $list-group-item-color-scale);
+	@if $state == 'dark' {
+		$list-group-variant-color: $light;
+	} @else if
+		contrast-ratio($list-group-variant-bg, $list-group-variant-color) <
+		$min-contrast-ratio
+	{
+		$list-group-variant-color: color.mix(
+			$value,
+			$list-group-variant-bg,
+			math.abs($dark-list-group-item-color-scale)
+		);
+	}
+
+	@include dark-mode(true) {
+		@include list-group-item-variant($state, $list-group-variant-bg, $list-group-variant-color);
+	}
+}

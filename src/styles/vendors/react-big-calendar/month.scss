@@ -1,0 +1,150 @@
+// stylelint-disable scss/at-extend-no-missing-placeholder
+// stylelint-disable at-rule-disallowed-list
+// stylelint-disable scale-unlimited/declaration-strict-value
+// stylelint-disable selector-max-universal
+@import './variables';
+
+.rbc-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.rbc-row-segment {
+	padding: 0 1px 1px;
+
+	.rbc-event-content {
+		@extend .rbc-ellipsis;
+	}
+}
+
+.rbc-selected-cell {
+	background-color: $date-selection-bg-color;
+}
+
+.rbc-show-more {
+	@extend .rbc-ellipsis;
+
+	z-index: $event-zindex;
+	height: auto;
+	background-color: rgba(255, 255, 255, 0.3);
+	color: $gray-500;
+	font-size: 85%;
+	font-weight: $font-weight-bold;
+	line-height: normal;
+	text-decoration-style: dotted;
+	transition: $transition-base;
+
+	&:hover,
+	&:focus {
+		color: $gray-700;
+	}
+}
+
+.rbc-month-view {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	width: 100%;
+	height: 100%; // ie-fix
+	flex: 1 0 0;
+	flex-direction: column;
+	border: 1px solid $calendar-border;
+	border-radius: $border-radius;
+	user-select: none;
+	@include dark-mode {
+		border-color: $dark-calendar-border;
+	}
+}
+
+.rbc-month-header {
+	display: flex;
+	flex-direction: row;
+}
+
+.rbc-month-row {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	height: 100%; // ie-fix
+	flex: 1 0 0; // postcss will remove the 0px here hence the duplication below
+	flex-basis: 0;
+	flex-direction: column;
+
+	& + & {
+		border-top: 1px solid $cell-border;
+		@include dark-mode {
+			border-top-color: $dark-cell-border;
+		}
+	}
+}
+
+.rbc-date-cell {
+	min-width: 0;
+	flex: 1 1 0;
+	padding-right: $spacer * 0.5;
+	text-align: right;
+
+	&.rbc-now {
+		font-weight: $font-weight-bold;
+	}
+
+	> a {
+		&,
+		&:active,
+		&:visited {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+}
+
+.rbc-row-bg {
+	@extend .rbc-abs-full;
+
+	display: flex;
+	overflow: hidden;
+	flex: 1 0 0;
+	flex-direction: row;
+}
+
+.rbc-day-bg {
+	flex: 1 0 0%;
+
+	& + & {
+		border-left: 1px solid $cell-border;
+		@include dark-mode {
+			border-left-color: $dark-cell-border;
+		}
+	}
+
+	.rbc-rtl & + & {
+		border-right: 1px solid $cell-border;
+		border-left-width: 0;
+		@include dark-mode {
+			border-right-color: $dark-cell-border;
+		}
+	}
+}
+
+.rbc-overlay {
+	position: absolute;
+	z-index: $event-zindex + 1;
+	padding: $spacer;
+	border: 1px solid #e5e5e5;
+	background-color: #fff;
+	box-shadow: $box-shadow;
+
+	> * + * {
+		margin-top: 1px;
+	}
+}
+
+.rbc-overlay-header {
+	padding: ($spacer * 0.25) $spacer;
+	border-bottom: 1px solid #e5e5e5;
+	margin: ($spacer * -1) ($spacer * -1) ($spacer * 0.5);
+}
+// stylelint-enable scss/at-extend-no-missing-placeholder
+// stylelint-enable at-rule-disallowed-list
+// stylelint-enable scale-unlimited/declaration-strict-value
+// stylelint-enable selector-max-universal

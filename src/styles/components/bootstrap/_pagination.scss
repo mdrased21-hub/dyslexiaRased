@@ -1,0 +1,31 @@
+//
+//	Pagination
+//
+
+.page-link {
+	@include dark-mode {
+		background-color: $dark-pagination-bg;
+		border-color: $dark-pagination-border-color;
+		color: $dark-pagination-color;
+
+		&:hover {
+			background-color: $dark-pagination-hover-bg;
+		}
+	}
+}
+
+.page-item {
+	&.active .page-link {
+		@include dark-mode {
+			@include gradient-bg($pagination-active-bg);
+		}
+	}
+
+	&.disabled .page-link {
+		@include dark-mode {
+			background-color: $dark-pagination-disabled-bg;
+			border-color: $dark-pagination-disabled-border-color;
+			color: $dark-pagination-disabled-color;
+		}
+	}
+}

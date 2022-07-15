@@ -1,0 +1,155 @@
+@use 'sass:math';
+@use 'sass:color';
+
+@import './variables';
+
+// stylelint-disable no-descending-specificity
+// stylelint-disable scss/at-extend-no-missing-placeholder
+// stylelint-disable at-rule-disallowed-list
+// stylelint-disable scale-unlimited/declaration-strict-value
+.rbc-time-column {
+	display: flex;
+	min-height: 100%;
+	flex-direction: column;
+
+	.rbc-timeslot-group {
+		flex: 1;
+	}
+}
+
+.rbc-timeslot-group {
+	display: flex;
+	min-height: 4rem;
+	flex-flow: column nowrap;
+	border-bottom: 1px solid $cell-border;
+	@include dark-mode {
+		border-bottom-color: $dark-cell-border;
+	}
+}
+
+.rbc-time-gutter,
+.rbc-header-gutter {
+	flex: none;
+}
+
+.rbc-label {
+	padding: 0 $btn-padding-y;
+}
+
+.rbc-day-slot {
+	position: relative;
+
+	.rbc-events-container {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin-right: 1rem;
+
+		&.rbc-rtl {
+			right: 0;
+			left: 1rem;
+		}
+	}
+
+	.rbc-event {
+		position: absolute;
+		display: flex;
+		overflow: hidden;
+		min-height: 1.5rem;
+		max-height: 100%;
+		flex-flow: column wrap;
+		align-items: flex-start;
+		border: 1px solid $event-border;
+	}
+
+	.rbc-background-event {
+		@extend .rbc-event;
+
+		opacity: 0.75;
+	}
+
+	.rbc-event-label {
+		width: auto;
+		flex: none;
+		padding-right: math.div($spacer, 3);
+	}
+
+	.rbc-event-content {
+		width: 100%;
+		height: 100%;
+		min-height: 1em;
+		flex: 1 1 0;
+		line-height: 1;
+		word-wrap: break-word;
+	}
+
+	.rbc-time-slot {
+		border-top: 1px solid color.adjust($cell-border, $lightness: 10%);
+		@include dark-mode {
+			border-top-color: color.adjust($dark-cell-border, $lightness: 10%);
+		}
+	}
+}
+
+.rbc-time-view-resources {
+	.rbc-time-gutter,
+	.rbc-time-header-gutter {
+		position: sticky;
+		z-index: 10;
+		left: 0;
+		border-right: $border-width solid $cell-border;
+		margin-right: $border-width * -1;
+		background-color: $white;
+		@include dark-mode {
+			border-right-color: $dark-cell-border;
+		}
+	}
+
+	.rbc-time-header {
+		overflow: hidden;
+	}
+
+	.rbc-time-header-content {
+		min-width: auto;
+		flex: 1 0 0;
+		flex-basis: 0;
+	}
+
+	.rbc-time-header-cell-single-day {
+		display: none;
+	}
+
+	.rbc-day-slot {
+		min-width: 10rem;
+	}
+
+	.rbc-header,
+	.rbc-day-bg {
+		width: 10rem;
+		// min-width: 0;
+		flex: 1 1 0;
+		flex-basis: 0;
+	}
+}
+
+.rbc-time-header-content + .rbc-time-header-content {
+	margin-left: $border-width * -1;
+}
+
+.rbc-time-slot {
+	flex: 1 0 0;
+
+	&.rbc-now {
+		font-weight: $font-weight-bold;
+	}
+}
+
+.rbc-day-header {
+	text-align: center;
+}
+// stylelint-enable no-descending-specificity
+// stylelint-enable scss/at-extend-no-missing-placeholder
+// stylelint-enable at-rule-disallowed-list
+// stylelint-enable scale-unlimited/declaration-strict-value

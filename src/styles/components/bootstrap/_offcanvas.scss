@@ -1,0 +1,54 @@
+//
+// Offcanvas
+//
+
+.offcanvas {
+	transition: none;
+	will-change: auto;
+
+	@include dark-mode {
+		background-color: $dark-offcanvas-bg-color;
+	}
+}
+
+.offcanvas-backdrop {
+	@include backdrop-filter-blur($offcanvas-modal-backdrop-filter);
+
+	background-color: $offcanvas-modal-bg-color;
+
+	&.show {
+		opacity: 1;
+	}
+}
+
+.offcanvas-start {
+	transform: none;
+}
+
+.offcanvas-end {
+	transform: none;
+}
+
+.offcanvas-bottom {
+	transform: none;
+}
+
+// Modal Style
+.offcanvas-modal-style {
+	@include backdrop-filter-blur($offcanvas-modal-backdrop-filter);
+
+	background-color: $offcanvas-modal-bg-color;
+	box-shadow: $offcanvas-modal-box-shadow;
+
+	@include media-breakpoint-up(sm) {
+		@include margin($offcanvas-modal-space);
+		@include border-radius($offcanvas-modal-border-radius);
+	}
+}
+
+.offcanvas-right-panel {
+	// z-index: round($zindex-modal-backdrop - 1);
+	@include dark-mode {
+		background-color: $dark-offcanvas-right-panel-bg-color;
+	}
+}

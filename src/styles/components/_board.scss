@@ -1,0 +1,18 @@
+//
+// Board
+//
+
+.board {
+	position: relative;
+	height: 100%;
+	flex-wrap: nowrap;
+	overflow-x: scroll;
+}
+
+.board-group-container {
+	// width: 18rem;
+}
+
+.board-group {
+	width: 27rem;
+}

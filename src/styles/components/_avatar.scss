@@ -1,0 +1,59 @@
+//
+// Avatar
+//
+
+// .avatar {}
+
+.avatar-group {
+	display: flex;
+	align-items: center;
+
+	.avatar {
+		position: relative;
+		// stylelint-disable no-eol-whitespace
+		box-sizing: content-box;
+		// stylelint-enable no-eol-whitespace
+		cursor: pointer;
+
+		// stylelint-disable selector-max-specificity
+		// stylelint-disable scale-unlimited/declaration-strict-value
+		&:nth-last-child(3) {
+			z-index: 3;
+		}
+
+		&:nth-last-child(2) {
+			z-index: 2;
+			margin-left: -1rem;
+		}
+
+		&:nth-last-child(1) {
+			z-index: 1;
+			margin-left: -1rem;
+		}
+
+		&:hover {
+			z-index: 3;
+		}
+		// stylelint-enable selector-max-specificity
+		// stylelint-enable scale-unlimited/declaration-strict-value
+	}
+
+	.avatar-more {
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		// stylelint-disable meowtec/no-px
+		border: 2px solid tint-color($primary, 70);
+		// stylelint-enable meowtec/no-px
+		background-color: tint-color($primary, 90);
+		border-radius: 50rem;
+		color: $primary;
+		font-size: smaller;
+		font-weight: 700;
+		@include dark-mode {
+			background-color: rgba-to-rgb(rgba($primary, 0.1), $dark);
+			border-color: rgba-to-rgb(rgba($primary, 0.3), $dark);
+		}
+	}
+}

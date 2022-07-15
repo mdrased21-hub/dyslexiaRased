@@ -1,0 +1,100 @@
+// stylelint-disable selector-no-qualifying-type
+// stylelint-disable selector-max-compound-selectors
+// stylelint-disable selector-max-specificity
+// stylelint-disable no-descending-specificity
+@import './variables';
+
+.rbc-agenda-view {
+	display: flex;
+	overflow: auto;
+	flex: 1 0 0;
+	flex-direction: column;
+
+	table.rbc-agenda-table {
+		width: 100%;
+		border: 1px solid $cell-border;
+		border-collapse: collapse;
+		border-spacing: 0;
+		@include dark-mode {
+			border-color: $dark-cell-border;
+		}
+
+		tbody > tr > td {
+			padding: ($spacer * 0.5) $spacer;
+			vertical-align: top;
+		}
+
+		.rbc-agenda-time-cell {
+			padding-right: $spacer;
+			padding-left: $spacer;
+			text-transform: lowercase;
+		}
+
+		tbody > tr > td + td {
+			border-left: 1px solid $cell-border;
+			@include dark-mode {
+				border-left-color: $dark-cell-border;
+			}
+		}
+
+		.rbc-rtl & {
+			tbody > tr > td + td {
+				border-right: 1px solid $cell-border;
+				border-left-width: 0;
+				@include dark-mode {
+					border-right-color: $dark-cell-border;
+				}
+			}
+		}
+
+		tbody > tr + tr {
+			border-top: 1px solid $cell-border;
+			@include dark-mode {
+				border-top-color: $dark-cell-border;
+			}
+		}
+
+		thead > tr > th {
+			padding: $btn-padding-y $btn-padding-x;
+			border-bottom: 1px solid $cell-border;
+			text-align: left;
+			@include dark-mode {
+				border-bottom-color: $dark-cell-border;
+			}
+
+			.rbc-rtl & {
+				text-align: right;
+			}
+		}
+	}
+}
+
+.rbc-agenda-time-cell {
+	text-transform: lowercase;
+
+	.rbc-continues-after::after {
+		content: ' »';
+	}
+
+	.rbc-continues-prior::before {
+		content: '« ';
+	}
+}
+
+.rbc-agenda-date-cell,
+.rbc-agenda-time-cell {
+	white-space: nowrap;
+}
+
+.rbc-agenda-date-cell {
+	background: $white;
+	color: $body-color;
+}
+
+.rbc-agenda-event-cell {
+	width: 100%;
+}
+// stylelint-enable selector-no-qualifying-type
+// stylelint-enable selector-max-compound-selectors
+// stylelint-enable selector-max-specificity
+// stylelint-enable no-descending-specificity

@@ -1,0 +1,20 @@
+//
+// Root
+//
+
+:root {
+	--#{$variable-prefix}card-bg: #{$card-bg};
+	--#{$variable-prefix}card-header-bg: #{$card-header-background-color};
+	--#{$variable-prefix}card-footer-bg: #{$card-header-background-color};
+	--#{$variable-prefix}border-radius: #{$border-radius};
+}
+
+[theme='dark']:root {
+	// Body
+	--#{$variable-prefix}body-bg: #{$dark-body-bg};
+	--#{$variable-prefix}body-color: #{$dark-body-color};
+	// Card
+	--#{$variable-prefix}card-bg: #{$dark-card-bg};
+	--#{$variable-prefix}card-header-bg: #{$dark-card-header-background-color};
+	--#{$variable-prefix}card-footer-bg: #{$dark-card-footer-background-color};
+}

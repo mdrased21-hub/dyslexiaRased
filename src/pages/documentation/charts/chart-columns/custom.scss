@@ -1,0 +1,59 @@
+// stylelint-disable selector-max-id
+// stylelint-disable selector-max-specificity
+// stylelint-disable scale-unlimited/declaration-strict-value
+// stylelint-disable meowtec/no-px
+#chart-year,
+#chart-quarter {
+	width: 100%;
+	max-width: 50%;
+	padding-top: 20px;
+	border: 1px solid #ddd;
+	background: #fff;
+	border-radius: 1rem;
+	box-shadow: none;
+}
+
+#chart-year {
+	position: relative;
+	z-index: 3;
+	float: left;
+	transition: 1s ease transform, 1s ease border-radius;
+}
+
+#chart-year.chart-quarter-activated {
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	transform: translateX(0);
+	transition: 1s ease transform;
+}
+
+#chart-quarter {
+	position: relative;
+	z-index: -2;
+	border-left: none;
+	float: left;
+	transition: 1s ease transform;
+}
+
+#chart-quarter.active {
+	z-index: 1;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	transform: translateX(0);
+	transition: 1.1s ease-in-out transform;
+}
+
+@media screen and (min-width: 480px) {
+	#chart-year {
+		transform: translateX(50%);
+	}
+
+	#chart-quarter {
+		transform: translateX(-50%);
+	}
+}
+
+// stylelint-enable selector-max-id
+// stylelint-enable selector-max-specificity
+// stylelint-enable scale-unlimited/declaration-strict-value
+// stylelint-enable meowtec/no-px

@@ -1,0 +1,45 @@
+//
+// To/Do
+//
+
+.todo-item {
+	display: flex;
+	height: $todo-item-height;
+	align-items: center;
+
+	&:not(:last-child) {
+		margin-bottom: $spacer;
+	}
+
+	.todo-bar {
+		width: $todo-bar-width;
+		height: 100%;
+		margin-right: $spacer * 0.5;
+	}
+
+	.todo-content {
+		flex: 1 0;
+
+		// stylelint-disable
+		.todo-title {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			line-clamp: 1;
+			-webkit-box-orient: vertical;
+		}
+		// stylelint-enable
+
+		.todo-subtitle {
+			margin-top: $spacer * -0.25;
+		}
+	}
+
+	.todo-extras {
+		display: flex;
+		flex: 0 0;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+}

@@ -1,0 +1,76 @@
+//
+//	Chat
+//
+
+.chat-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.chat-group {
+	display: flex;
+	width: 100%;
+	margin-bottom: $spacer * 0.75;
+
+	> * {
+		margin-right: $spacer * 0.25;
+	}
+}
+
+.chat-avatar {
+	display: flex;
+	align-items: flex-end;
+}
+
+.chat-messages {
+	max-width: 60%;
+}
+
+.chat-message {
+	@include border-radius($border-radius * 1.5);
+
+	padding: $spacer;
+	background-color: $gray-200;
+
+	@include dark-mode {
+		background-color: $gray-800;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: $spacer * 0.25;
+	}
+
+	&:not(.chat-message-reply) {
+		&:not(:first-of-type) {
+			@include border-top-start-radius($border-radius * 0.5);
+		}
+
+		&:not(:last-of-type) {
+			@include border-bottom-start-radius($border-radius * 0.5);
+		}
+	}
+
+	&.chat-message-reply {
+		&:not(:first-of-type) {
+			@include border-top-end-radius($border-radius * 0.5);
+		}
+
+		&:not(:last-of-type) {
+			@include border-bottom-end-radius($border-radius * 0.5);
+		}
+	}
+}
+
+.chat-message-reply {
+	background-color: tint-color($info, 20%);
+	color: $white;
+	@include dark-mode {
+		background-color: rgba-to-rgb(rgba($info, 0.3), $dark);
+	}
+}
+
+.chat-group-reply {
+	justify-content: flex-end;
+}
+
+// .chat-send-message {}

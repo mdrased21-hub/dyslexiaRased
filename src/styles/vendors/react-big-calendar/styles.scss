@@ -1,0 +1,146 @@
+// stylelint-disable selector-no-qualifying-type
+// stylelint-disable scss/selector-no-redundant-nesting-selector
+// stylelint-disable scale-unlimited/declaration-strict-value
+// stylelint-disable no-invalid-position-at-import-rule
+@import './variables';
+@import './reset';
+
+.rbc-calendar {
+	display: flex;
+	height: 100%;
+	box-sizing: border-box;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.rbc-calendar *,
+.rbc-calendar *::before,
+.rbc-calendar *::after {
+	box-sizing: inherit;
+}
+
+.rbc-abs-full {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+.rbc-ellipsis {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.rbc-rtl {
+	direction: rtl;
+}
+
+.rbc-off-range {
+	color: $out-of-range-color;
+	@include dark-mode {
+		color: $dark-out-of-range-color;
+	}
+}
+
+.rbc-off-range-bg {
+	background: $out-of-range-bg-color;
+	@include dark-mode {
+		background: $dark-out-of-range-bg-color;
+	}
+}
+
+.rbc-header {
+	overflow: hidden;
+	min-height: 0;
+	flex: 1 0 0%;
+	padding: ($spacer * 0.5) ($spacer * 0.5);
+	border-bottom: 1px solid $cell-border;
+	font-size: 90%;
+	font-weight: $font-weight-bold;
+	text-align: center;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+	white-space: nowrap;
+	@include dark-mode {
+		border-bottom-color: $dark-cell-border;
+	}
+
+	& + & {
+		border-left: 1px solid $cell-border;
+		@include dark-mode {
+			border-left-color: $dark-cell-border;
+		}
+	}
+
+	.rbc-rtl & + & {
+		border-right: 1px solid $cell-border;
+		border-left-width: 0;
+		@include dark-mode {
+			border-right-color: $dark-cell-border;
+		}
+	}
+
+	& > a {
+		&,
+		&:active,
+		&:visited {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+}
+
+.rbc-button-link {
+	padding: 0;
+	border: none;
+	margin: 0;
+	background: none;
+	color: inherit;
+	cursor: pointer;
+	user-select: text;
+}
+
+.rbc-row-content {
+	position: relative;
+	z-index: 4;
+	user-select: none;
+}
+
+.rbc-row-content-scrollable {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+
+	.rbc-row-content-scroll-container {
+		height: 100%;
+		-ms-overflow-style: none; /* IE and Edge */
+		overflow-y: scroll;
+		scrollbar-width: none; /* Firefox */
+
+		/* Hide scrollbar for Chrome, Safari and Opera */
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+}
+
+.rbc-today {
+	background-color: $today-highlight-bg;
+	@include dark-mode {
+		background-color: $dark-today-highlight-bg;
+	}
+}
+
+@import './toolbar';
+@import './event';
+@import './month';
+@import './agenda';
+@import './time-grid';
+// stylelint-enable selector-no-qualifying-type
+// stylelint-enable scss/selector-no-redundant-nesting-selector
+// stylelint-enable scale-unlimited/declaration-strict-value
+// stylelint-enable no-invalid-position-at-import-rule
